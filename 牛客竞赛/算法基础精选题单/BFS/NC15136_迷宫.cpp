@@ -12,10 +12,13 @@ struct node {
     node(int _x, int _y, int _step, bool _key)
         : x(_x), y(_y), step(_step), key(_key) {}
 };
+
 char g[507][507];
 bool vis[507][507][2];
+
 int dx[4] = {0, 1, 0, -1};
 int dy[4] = {1, 0, -1, 0};
+
 int H, W, sx, sy, ans = -1;
 
 void bfs() {
@@ -31,8 +34,19 @@ void bfs() {
             ans = cur.step;
             return;
         }
+
         for (int i = 0; i < 4; ++i) {
             node nxt(cur.x + dx[i], cur.y + dy[i], cur.step + 1, cur.key);
+            if (!vis[nxt.x][nxt.y][nxt.key] && g[nxt.x][nxt.y] != 'W') {
+                if (g[nxt.x][nxt.y] == 'K')
+                    nxt.key = true;
+
+                if (nxt.key == false && g[nxt.x][nxt.y] != 'D' ||
+                    nxt.key == true) {
+                    vis[nxt.x][nxt.y][nxt.key] = true;
+                    q.push(nxt);
+                }
+            }
         }
     }
 }

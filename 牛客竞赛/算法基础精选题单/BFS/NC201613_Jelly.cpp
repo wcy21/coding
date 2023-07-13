@@ -58,6 +58,5 @@ int main() {
     bfs();
     cout << ans << endl;
 
-    system("pause");
     return 0;
 }
