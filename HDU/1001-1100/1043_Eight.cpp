@@ -1,6 +1,6 @@
-#include <iostream>
 #include <algorithm>
 #include <cstring>
+#include <iostream>
 #include <queue>
 
 #define MAXN 362887
@@ -12,8 +12,7 @@ struct node {
     int pos;
     char puz[10];
 
-    node(int _hashs, int _pos, char _puz[10]) :
-        hashs(_hashs), pos(_pos){
+    node(int _hashs, int _pos, char _puz[10]) : hashs(_hashs), pos(_pos) {
         memcpy(this->puz, _puz, 10);
     }
 };
@@ -23,16 +22,16 @@ struct step {
     int pre;
 } steps[MAXN];
 
-int fact[10] = { 1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880 };
+int fact[10] = {1, 1, 2, 6, 24, 120, 720, 5040, 40320, 362880};
 
 char puzzle[10];
 char state[10] = "123456780";
 
-int dx[4] = { 0, 1, 0, -1 };
-int dy[4] = { 1, 0, -1, 0 };
-char op[4] = { 'l', 'u', 'r', 'd' };
+int dx[4] = {0, 1, 0, -1};
+int dy[4] = {1, 0, -1, 0};
+char op[4] = {'l', 'u', 'r', 'd'};
 
-int cantor(char* a) {
+int cantor(char *a) {
     int ret = 1;
     for (int i = 0; i < 9; ++i) {
         int cnt = 0;
@@ -62,13 +61,13 @@ void bfs() {
             int y = cur.pos % 3 + dy[i];
 
             if (x >= 0 && x <= 2 && y >= 0 && y <= 2) {
-                node temp(-1, 3 * x + y, cur.puz);
-                swap(temp.puz[temp.pos], temp.puz[cur.pos]);
-                temp.hashs = cantor(temp.puz);
-                if (steps[temp.hashs].pre == -1) {
-                    steps[temp.hashs].dire = op[i];
-                    steps[temp.hashs].pre = cur.hashs;
-                    q.push(temp);
+                node nxt(-1, 3 * x + y, cur.puz);
+                swap(nxt.puz[nxt.pos], nxt.puz[cur.pos]);
+                nxt.hashs = cantor(nxt.puz);
+                if (steps[nxt.hashs].pre == -1) {
+                    steps[nxt.hashs].dire = op[i];
+                    steps[nxt.hashs].pre = cur.hashs;
+                    q.push(nxt);
                 }
             }
         }
@@ -77,8 +76,7 @@ void bfs() {
 
 int main() {
     bfs();
-    
-    int hashs;
+
     while (cin >> puzzle[0]) {
         if (puzzle[0] == 'x')
             puzzle[0] = '0';
@@ -88,7 +86,7 @@ int main() {
                 puzzle[i] = '0';
         }
 
-        hashs = cantor(puzzle);
+        int hashs = cantor(puzzle);
         if (steps[hashs].pre == -1)
             cout << "unsolvable" << endl;
         else {

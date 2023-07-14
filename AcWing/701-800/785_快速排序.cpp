@@ -2,8 +2,10 @@
 
 using namespace std;
 
+int n, a[100007];
+
 void quick_sort(int q[], int l, int r) {
-	if (l >= r) return;
+	if (l >= r)  return;
 
 	int i = l - 1, j = r + 1, x = q[l + r >> 1];
 	while (i < j) {
@@ -15,8 +17,6 @@ void quick_sort(int q[], int l, int r) {
 	quick_sort(q, l, j);
 	quick_sort(q, j + 1, r);
 }
-
-int n, a[100007];
 
 int main() {
 	cin >> n;
