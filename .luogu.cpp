@@ -38,5 +38,6 @@ int main() {
     memset(vis, false, sizeof(vis));
     cout << minCost << endl;
 
+    system("pause");
     return 0;
 }
