@@ -17,15 +17,13 @@ struct ListNode {
 // begin
 class Solution {
 public:
-    string replaceSpaces(string &str) {
-        string ret;
-        for (int i = 0; i < str.size(); ++i) {
-            if (str[i] == ' ')
-                ret += "%20";
-            else
-                ret += str[i];
+    int NumberOf1(int n) {
+        int ans = 0;
+        while (n) {
+            ++ans;
+            n &= (n - 1);
         }
-        return ret;
+        return ans;
     }
 };
 // end
@@ -33,8 +31,9 @@ public:
 Solution t;
 
 int main() {
-    vector<int> nums = {2, 3, 5, 4, 3, 2, 6, 7};
-    cout << t.duplicateInArray(nums) << endl;
+    // vector<vector<int>> nums = {{1, 2, 8, 9}, {2, 4, 9, 12}, {4, 7, 10, 13}, {6, 8, 11, 15}};
+    int n = -2;
+    cout << t.NumberOf1(n) << endl;
 
     system("pause");
     return 0;

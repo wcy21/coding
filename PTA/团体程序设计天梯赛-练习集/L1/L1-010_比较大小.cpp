@@ -15,6 +15,5 @@ int main() {
 
     cout << a << "->" << b << "->" << c;
 
-    system("pause");
     return 0;
 }
