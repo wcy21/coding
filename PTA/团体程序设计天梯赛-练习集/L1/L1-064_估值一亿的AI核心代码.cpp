@@ -35,7 +35,7 @@ int main() {
 		for (int i = 0; i < s.size();){
 			int flag = 0;
 			for (int j = 0; j < 4; ++j) {
-				if (i + src[j].size() < s.size() && (s.substr(i, src[j].size()) == src[j])) {
+				if ((i + src[j].size() - 1 < s.size()) && (s.substr(i, src[j].size()) == src[j])) {
 					if ((i == 0 || !isalnum(s[i - 1])) && (i + src[j].size() == s.size() || !isalnum(s[i + src[j].size()]))) {
 						tmp += dest[j];
 						i += src[j].size();
@@ -54,5 +54,6 @@ int main() {
 
 		cout << "AI: " << s << endl;
 	}
+    
 	return 0;
 }
