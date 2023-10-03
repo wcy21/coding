@@ -3,8 +3,9 @@
 using namespace std;
 
 int main() {
-	cout << "I'm gonna win! Today!" << endl;
-	cout << "2022-04-23" << endl;
+    int n, v;
+    cin >> n >> v;
+    cout << n / v << endl;
 	
     return 0;
 }
